@@ -1,3 +1,12 @@
+import { FizzBuzzForm } from './fizzbuzz/FizzBuzzForm';
+import { TicTacToe } from './tictactoe/TicTacToe';
+
 export function App() {
-  return <h1>Kata</h1>;
+  return (
+    <main>
+      <h1>Kata</h1>
+      <FizzBuzzForm />
+      <TicTacToe />
+    </main>
+  );
 }

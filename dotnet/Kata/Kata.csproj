@@ -1,8 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<!-- "SDK-style" project: the Microsoft.NET.Sdk brings sensible defaults, so every *.cs
+     file under this folder is compiled automatically (no file list like in old .csproj). -->
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!-- Target .NET 10 (LTS). This also selects the C# language version: net10.0 => C# 14.
+         (netstandard2.0 would default to C# 7.3: no records, switch expressions, etc.) -->
     <TargetFramework>net10.0</TargetFramework>
+    <!-- Adds global usings (System, System.Linq, System.Collections.Generic, ...) to every file. -->
     <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Nullable reference types: `string` can't be null, `string?` can; the compiler warns. -->
     <Nullable>enable</Nullable>
   </PropertyGroup>
 

@@ -1,20 +1,40 @@
+// tsconfig.json accepts comments (JSONC).
+// TypeScript 6 (ts-jest does not support TypeScript 7 yet).
 {
   "compilerOptions": {
+    // JavaScript version the output targets (syntax newer than this is down-levelled).
     "target": "es2022",
-    "lib": ["es2022", "dom", "dom.iterable"],
+    // Built-in type definitions available ("dom" = browser APIs): es2024 gives Array.prototype.with/toSorted, Object.groupBy...
+    "lib": ["es2024", "dom", "dom.iterable"],
+    // Output modern ES modules; Vite bundles them for the browser.
     "module": "esnext",
+    // How `import './x'` is resolved. "bundler": like Vite/esbuild, no file extensions needed.
     "moduleResolution": "bundler",
+    // Compile JSX with the automatic runtime (no `import React` needed in .tsx files).
     "jsx": "react-jsx",
+    // All strict checks: strictNullChecks, noImplicitAny, strictPropertyInitialization, ...
     "strict": true,
+    // Error on unused variables/imports.
     "noUnusedLocals": true,
+    // Error on unused function parameters (prefix with _ to allow).
     "noUnusedParameters": true,
+    // Error when a `case` falls through to the next without break/return.
     "noFallthroughCasesInSwitch": true,
+    // Require the `override` keyword when a subclass redefines a member.
+    "noImplicitOverride": true,
+    // Allow `import x from 'cjs-lib'` for CommonJS packages without a default export.
     "esModuleInterop": true,
+    // Each file must be compilable alone (how ts-jest/esbuild/Vite work). E.g. use `export type` to re-export types.
     "isolatedModules": true,
+    // Don't type-check .d.ts files from node_modules (faster, avoids 3rd-party noise).
     "skipLibCheck": true,
+    // `./Board` vs `./board` is an error (Linux is case-sensitive, macOS/Windows are not).
     "forceConsistentCasingInFileNames": true,
+    // Global type packages to load. TS 6+ loads NONE by default, so list them: `describe`/`it`/`expect` come from @types/jest. ...and @testing-library/jest-dom adds matchers like toBeInTheDocument/toBeDisabled.
     "types": ["jest", "node", "@testing-library/jest-dom"],
+    // tsc only type-checks (`npm run typecheck`); the test runner/bundler produces the JavaScript.
     "noEmit": true
   },
+  // Files that are type-checked.
   "include": ["src", "tests", "vite.config.ts"]
 }

@@ -1,8 +1,13 @@
 {
+  // Pins the .NET SDK used in this folder (and below). Your home-level global.json is ignored here.
   "sdk": {
+    // Exact SDK to use...
     "version": "10.0.401",
+    // ...or any newer feature band/patch of 10.0 (10.0.4xx, 10.0.5xx), never 11.
     "rollForward": "latestFeature"
   },
+  // .NET 10 SDK: run `dotnet test` on Microsoft.Testing.Platform instead of VSTest.
+  // Required by xUnit v3 (test projects are executables).
   "test": {
     "runner": "Microsoft.Testing.Platform"
   }

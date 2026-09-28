@@ -1,27 +1,31 @@
+# pyproject.toml: the standard Python project file (PEP 621). uv reads and updates it.
+
 [project]
-name = "kata"
+name = "kata"                  # package name; the importable code lives in src/kata/
 version = "0.1.0"
 description = "Kata kickstart"
 readme = "README.md"
 authors = [
     { name = "Danrley Pereira", email = "danrleywillian@gmail.com" }
 ]
-requires-python = ">=3.13"
-dependencies = []
+requires-python = ">=3.13"     # uv picks/installs a matching Python (pinned in .python-version)
+dependencies = []              # runtime dependencies (`uv add <pkg>`)
 
 [build-system]
+# How the package is built/installed. uv_build installs src/kata into .venv so tests can `import kata`.
 requires = ["uv_build>=0.9.16,<0.10.0"]
 build-backend = "uv_build"
 
 [dependency-groups]
+# Development-only tools (`uv add --dev <pkg>`); installed by `uv sync` but not shipped.
 dev = [
-    "pytest>=9.1.1",
-    "ruff>=0.16.9",
+    "pytest>=9.1.1",           # test runner
+    "ruff>=0.16.9",            # linter + formatter (replaces flake8/isort/black)
 ]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
-addopts = "-v"
+testpaths = ["tests"]          # where pytest looks for test_*.py files
+addopts = "-v"                 # verbose: one line per test
 
 [tool.ruff]
-line-length = 100
+line-length = 100              # same width as Prettier in the TypeScript projects

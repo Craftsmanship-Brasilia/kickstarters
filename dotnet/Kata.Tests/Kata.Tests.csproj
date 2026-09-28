@@ -1,22 +1,30 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <!-- Same framework as the library under test. -->
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <!-- Never produce a NuGet package from the test project. -->
     <IsPackable>false</IsPackable>
+    <!-- xUnit v3: the test project is an executable (it contains its own test runner),
+         so `dotnet run` in this folder also runs the tests. -->
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
+    <!-- xUnit v3: framework + assertions + runner (Microsoft.Testing.Platform) in one package.
+         No Microsoft.NET.Test.Sdk / xunit.runner.visualstudio needed any more. -->
     <PackageReference Include="xunit.v3" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Global using: [Fact], [Theory], Assert, TestContext available in every test file. -->
     <Using Include="Xunit" />
   </ItemGroup>
 
   <ItemGroup>
+    <!-- The library under test. -->
     <ProjectReference Include="..\Kata\Kata.csproj" />
   </ItemGroup>
 

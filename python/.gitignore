@@ -1,4 +1,6 @@
+# virtual environment created by `uv sync`
 .venv/
+# caches created by Python, pytest and ruff
 __pycache__/
 .pytest_cache/
 .ruff_cache/
