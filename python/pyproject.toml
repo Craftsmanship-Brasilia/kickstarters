@@ -1,0 +1,27 @@
+[project]
+name = "kata"
+version = "0.1.0"
+description = "Kata kickstart"
+readme = "README.md"
+authors = [
+    { name = "Danrley Pereira", email = "danrleywillian@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[build-system]
+requires = ["uv_build>=0.9.16,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.9",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v"
+
+[tool.ruff]
+line-length = 100
