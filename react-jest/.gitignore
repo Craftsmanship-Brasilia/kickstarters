@@ -1,3 +1,6 @@
+# dependencies (recreated by npm install)
 node_modules
+# test coverage reports
 coverage
+# build output
 dist

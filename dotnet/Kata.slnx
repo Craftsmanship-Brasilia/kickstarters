@@ -1,3 +1,5 @@
+<!-- .slnx: the new XML solution format (default since .NET 10 SDK). It only lists the
+     projects; replaces the old .sln with its GUIDs and configuration sections. -->
 <Solution>
   <Project Path="Kata.Tests/Kata.Tests.csproj" />
   <Project Path="Kata/Kata.csproj" />

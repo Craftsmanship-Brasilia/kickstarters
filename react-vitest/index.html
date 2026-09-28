@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- Vite's entry point: served as-is by `npm run dev`, and the starting point of `npm run build`. -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,7 +7,9 @@
     <title>Kata</title>
   </head>
   <body>
+    <!-- React renders the whole app inside this element (see src/main.tsx). -->
     <div id="root"></div>
+    <!-- type="module": native ES modules; Vite compiles the .tsx on the fly in dev. -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

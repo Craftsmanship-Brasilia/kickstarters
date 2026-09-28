@@ -1,19 +1,38 @@
+// tsconfig.json accepts comments (JSONC).
+// TypeScript 7 (native compiler). Vitest strips types itself, tsc only type-checks.
 {
   "compilerOptions": {
+    // JavaScript version the output targets (syntax newer than this is down-levelled).
     "target": "es2022",
+    // Built-in type definitions available: es2024 gives Array.prototype.with/toSorted, Object.groupBy...
     "lib": ["es2024"],
+    // "preserve": leave import/export as written; Vitest/Vite handles modules.
     "module": "preserve",
+    // How `import './x'` is resolved. "bundler": like Vite/esbuild, no file extensions needed.
     "moduleResolution": "bundler",
+    // All strict checks: strictNullChecks, noImplicitAny, strictPropertyInitialization, ...
     "strict": true,
+    // Error on unused variables/imports.
     "noUnusedLocals": true,
+    // Error on unused function parameters (prefix with _ to allow).
     "noUnusedParameters": true,
+    // Error when a `case` falls through to the next without break/return.
     "noFallthroughCasesInSwitch": true,
+    // Require the `override` keyword when a subclass redefines a member.
+    "noImplicitOverride": true,
+    // Each file must be compilable alone (how ts-jest/esbuild/Vite work). E.g. use `export type` to re-export types.
     "isolatedModules": true,
+    // Imports are kept exactly as written: type-only imports must use `import type`.
     "verbatimModuleSyntax": true,
+    // Don't type-check .d.ts files from node_modules (faster, avoids 3rd-party noise).
     "skipLibCheck": true,
+    // `./Board` vs `./board` is an error (Linux is case-sensitive, macOS/Windows are not).
     "forceConsistentCasingInFileNames": true,
+    // Global type packages to load. TS 6+ loads NONE by default: vitest/globals types `describe`/`it`/`vi`.
     "types": ["vitest/globals", "node"],
+    // tsc only type-checks (`npm run typecheck`); the test runner/bundler produces the JavaScript.
     "noEmit": true
   },
+  // Files that are type-checked.
   "include": ["src", "tests", "vitest.config.ts"]
 }
