@@ -13,7 +13,8 @@ SANITIZE = -fsanitize=undefined -fno-sanitize-recover=all
 CFLAGS = -std=c17 -Wall -Wextra -Wpedantic -Werror -Wshadow -g -O0 $(SANITIZE)
 # -MMD -MP: gcc writes a .d file per object listing the headers it included,
 # so editing a header rebuilds exactly the objects that use it
-CPPFLAGS = -Isrc -Ivendor/unity -DUNITY_USE_COMMAND_LINE_ARGS -MMD -MP
+# UNITY_USE_COMMAND_LINE_ARGS: -f/-x test filters; UNITY_INCLUDE_DOUBLE: TEST_ASSERT_DOUBLE_* (float-only by default)
+CPPFLAGS = -Isrc -Ivendor/unity -DUNITY_USE_COMMAND_LINE_ARGS -DUNITY_INCLUDE_DOUBLE -MMD -MP
 LDFLAGS = $(SANITIZE)
 
 # Machine-specific overrides live in an untracked local.mk, e.g. `LDFLAGS += -B/usr/bin/`
