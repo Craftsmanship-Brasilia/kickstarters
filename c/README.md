@@ -22,12 +22,37 @@ Requirements: `gcc`, `make`, `gdb`. Optional: `valgrind`, `entr`. On Debian/Ubun
 
 ## Examples
 
-| File                                          | Shows                                                                                   |
-| --------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `src/fizzbuzz.{h,c}`                          | returning a string via a caller-supplied buffer (no malloc), `snprintf` truncation      |
-| `tests/test_fizzbuzz.c`                       | one test per TDD step, table-driven test (C's parameterized test), `setUp` filling a buffer with garbage |
-| `src/tictactoe.{h,c}`                         | prefixed enums, error codes instead of exceptions, struct returned by value, designated initializers, `static` helpers |
-| `tests/test_tictactoe.c`                      | shared fixture reset in `setUp`, a `PLAY(...)` helper macro using compound literals     |
+Study these before or during a kata. Each test file is also a working reference for how to write tests in C.
+
+### Katas
+
+| File                                  | Shows                                                                                                   |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `src/fizzbuzz.{h,c}`                  | returning a string via a caller-supplied buffer (no malloc), `snprintf` truncation                      |
+| `tests/test_fizzbuzz.c`               | one test per TDD step, table-driven test (C's parameterized test), `setUp` filling a buffer with garbage |
+| `src/tictactoe.{h,c}`                 | prefixed enums, error codes instead of exceptions, struct returned by value, `static` helpers           |
+| `tests/test_tictactoe.c`              | fixture reset in `setUp`, a `PLAY(...)` helper macro using compound literals                            |
+
+### The language
+
+| File                                  | Shows                                                                                                   |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `src/modern_c.{h,c}`                  | C99/C11 features next to their C89 equivalent: designated initializers, compound literals, anonymous unions, `static inline` vs macros, `_Generic`, `_Static_assert`, flexible array members, `restrict`, `<stdint.h>`; C23 preview in comments |
+| `tests/test_pointers.c`               | learning tests: `&`/`*`, out parameters, array decay, pointer arithmetic, strings and `'\0'`, `strcmp` vs `==`, `const` placement, `NULL` |
+| `src/int_stack.{h,c}`                 | opaque type (private fields), create/destroy ownership, `realloc` growth done safely, `bool` + out parameter instead of exceptions, `const` getters |
+| `tests/test_int_stack.c`              | resource per test in `setUp`/`tearDown` (runs even after a failure, so `make memcheck` stays clean)     |
+
+### Unity and test doubles
+
+| File                                  | Shows                                                                                                   |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `tests/test_unity_features.c`         | integer/hex/bit/range, float and double, string, array, memory and pointer assertions; `_MESSAGE`, `TEST_MESSAGE`, `TEST_IGNORE_MESSAGE`, `TEST_PASS_MESSAGE`; a custom assertion that reports the caller's line |
+| `src/tire_alarm.{h,c}`                | dependency injection with a function pointer + `void *context` "interface"                              |
+| `tests/test_tire_alarm.c`             | hand-written stub and spy (C's `jest.fn()`/Moq); notes on link-time substitution and CMock              |
+
+1 test is ignored on purpose to demonstrate `TEST_IGNORE_MESSAGE`. `make coverage` is below 100% for
+`int_stack.c` and `modern_c.c` on purpose: out-of-memory branches (`malloc` returning `NULL`) can only be tested by
+faking `malloc`, e.g. with link-time substitution.
 
 ## Starting a new kata
 
