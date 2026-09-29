@@ -8,3 +8,4 @@
 | `react-jest`        | React 19, Vite 8, Jest 30, Testing Library, TypeScript 6  | `npm test`      |
 | `react-vitest`      | React 19, Vite 8, Vitest 5, Testing Library, TypeScript 7 | `npm test`      |
 | `dotnet`            | .NET 10 (LTS), xUnit v3, Makefile                         | `make test`     |
+| `c`                 | C17, gcc, Unity 2.7, Makefile, gdb, UBSan, valgrind/ASan  | `make test`     |
