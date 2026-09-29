@@ -20,6 +20,15 @@ Requirements: `gcc`, `make`, `gdb`. Optional: `valgrind`, `entr`. On Debian/Ubun
 `sudo apt install build-essential gdb valgrind entr`. On macOS, `gcc` is clang: everything except
 `memcheck` and `debug` works (use `make asan` and `lldb`). On Windows, use WSL.
 
+## Examples
+
+| File                                          | Shows                                                                                   |
+| --------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `src/fizzbuzz.{h,c}`                          | returning a string via a caller-supplied buffer (no malloc), `snprintf` truncation      |
+| `tests/test_fizzbuzz.c`                       | one test per TDD step, table-driven test (C's parameterized test), `setUp` filling a buffer with garbage |
+| `src/tictactoe.{h,c}`                         | prefixed enums, error codes instead of exceptions, struct returned by value, designated initializers, `static` helpers |
+| `tests/test_tictactoe.c`                      | shared fixture reset in `setUp`, a `PLAY(...)` helper macro using compound literals     |
+
 ## Starting a new kata
 
 ```bash
